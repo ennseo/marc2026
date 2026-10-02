@@ -1,0 +1,55 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.env
+tokens.env
+*.pem
+*.key
+
+# Python environments and generated files
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Only the three final detector checkpoints belong in this repository.
+*.pt
+!detection/weights/chungmu_yolo11s_1280_best.pt
+!detection/weights/chungmu_roi_10cls_yolo11s_1280_best.pt
+!detection/weights/yolo11n-pose.pt
+*.gguf
+*.onnx
+*.engine
+
+# Local datasets, runs, runtime logs, and archives
+data/
+cctv_dump*/
+trainer_output*/
+yolo_dataset*/
+yolo_runs/
+runs/
+results/
+archives/
+*.log
+!docs/evaluation/agent-overall-v6.log
+*.zip
+*.tar
+*.tar.gz
+docker-compose.override.yml
+.runtime-data/
+problems.yaml
+
+# Editors and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
