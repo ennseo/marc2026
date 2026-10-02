@@ -1,23 +1,5 @@
 # NOTICES - MARC 2026 Starter Kit (third-party assets and execution policy notice)
 
-## Team dongdong project contributions
-
-This repository contains the team's project implementation and selected experiment artifacts.
-The starter-kit notices below are retained to distinguish organizer-provided components from team work.
-
-| Contributor | Project responsibility |
-|---|---|
-| 김연철 | Navigation |
-| 김은서 | Detection and visual grounding |
-| 박효빈 | Geometric coordinate transformations |
-| 오민수 | Robot manipulation |
-| 장은재 | Natural-language understanding |
-
-Team affiliation: Dongguk University, Seoul, Republic of Korea.
-The participant SDK (`marc_sdk`) and starter-kit components originate from MARC 2026 / IoTCOSS.
-The bundled YOLO checkpoints retain their original license metadata. Public-copy hashes and metadata
-sanitization details are recorded in `detection/weights/manifest.json`.
-
 ## Execution environment / internet policy
 - **The competition (judging) runtime has no internet access.** Public APIs and runtime external downloads are prohibited.
 - **However, internet access is available at build time** - model weights and dependencies are **baked in at build time** (no runtime dependency).
@@ -72,13 +54,3 @@ Some assets are modified derivatives (e.g. resized or re-textured); the original
 | object/etc | closedlongumbrella | https://sketchfab.com/3d-models/umbrella-not-open-b5835433a6414388a9846568cc110da |
 | object/etc | pencilcase (modified) | https://sketchfab.com/3d-models/pencil-case-pencil-sharpener-eraser-and-ruler-62d50825c5de4d1ba574356fbe9b2985 |
 | object/etc | sunblock (modified) | https://sketchfab.com/3d-models/kolagra-sunblock-tube-d3b9b069af3a4d78915ebfddccea5dbb |
-
-## Preserved reference material
-
-`demo/README.md` is an unchanged historical starter-kit guide; its mock filenames and
-execution instructions describe the original reference implementation, not the current agent.
-`demo/agent_manipulation.py` is the unchanged fixed-keyframe reference implementation
-(original filename: `mock_agent_manipulation.py`); the application uses `demo/arm_pick.py`.
-`simulation-platform/` is copied unchanged from the local MARC starter kit as reference
-configuration, launch scripts, and patches. Runtime content is obtained from external
-container images; the simulator and its assets are not bundled in this repository.
