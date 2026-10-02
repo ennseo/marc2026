@@ -10,7 +10,7 @@
 
 ## 시스템 구성
 
-![MARC 2026 미션 구성: Stage 1 목표 탐색과 위치 추정, Stage 2 로봇 회수와 배송](assets/marc-2026-포스터.png)
+![MARC 2026 미션 구성: Stage 1 목표 탐색과 위치 추정, Stage 2 로봇 회수와 배송](assets/marc-2026-concepts.png)
 
 ### Stage 1 — 목표 객체 탐색 및 위치 추정
 
