@@ -1,0 +1,29 @@
+{
+  "note": "Public copies have personal training paths removed from checkpoint metadata. All tensor storage bytes and other archive members are unchanged. License metadata is retained.",
+  "checkpoints": [
+    {
+      "file": "chungmu_roi_10cls_yolo11s_1280_best.pt",
+      "source_sha256": "b153ca1ac0fa4d1038fa1fcec015db4959637b6fcda098d135d38004680ccdf9",
+      "sha256": "e83b18b8a8a33eb5aa4ab7b74c4a8e27b596899c20b5c210826995d70ed645e8",
+      "size_bytes": 19343712,
+      "personal_path_strings_sanitized": 4,
+      "unchanged_tensor_storage_members": 503
+    },
+    {
+      "file": "chungmu_yolo11s_1280_best.pt",
+      "source_sha256": "ab628ca973fbc65a593e616a55348fb133cd564c3662c0c3eca455fc7243197c",
+      "sha256": "90da8cd9c52324f7b0c07e3e99131def2b98a32b56caba2630f6f5218afb69a4",
+      "size_bytes": 19257056,
+      "personal_path_strings_sanitized": 3,
+      "unchanged_tensor_storage_members": 503
+    },
+    {
+      "file": "yolo11n-pose.pt",
+      "source_sha256": "869e83fcdffdc7371fa4e34cd8e51c838cc729571d1635e5141e3075e9319dc0",
+      "sha256": "02533b1c6afd4e5c902c5f12f8b4ae50f43c370607452a0b61e6337716a9a244",
+      "size_bytes": 6215744,
+      "personal_path_strings_sanitized": 2,
+      "unchanged_tensor_storage_members": 545
+    }
+  ]
+}

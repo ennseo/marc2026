@@ -1,0 +1,54 @@
+# Class index table for the fine-tuned detector (track 2 in detection/detector.py).
+#
+# THE LINE ORDER IS THE CLASS INDEX. Never reorder or delete a line once a model has been
+# trained: index 0 must mean `bench` forever, or every trained weight becomes meaningless
+# while still loading and running, which is the worst kind of bug to find.
+# New classes are APPENDED AT THE END by tools/make_yolo_dataset.py -- appending is safe
+# because it leaves every existing index untouched.
+#
+# Sourced from the 34 classes appearing in trainer_output's own label JSON (36 scenes,
+# 917 boxes, 2026-08-19). That is a LOWER BOUND: a class absent from those 36 scenes is
+# absent from this list too. The technical guide's example JSON mentions `master_chef_can`,
+# which never appeared here -- expect this list to grow after a larger dataset-gen run.
+#
+# Blank lines and #-comments are ignored.
+
+# -- landmarks (15) --
+bench
+picnic_table
+vending_machine
+trash_can
+hydrant
+bicycle
+kick_scooter
+postbox
+taxi
+police_car
+normal_car_1
+normal_car_2
+sports_car
+sports_car_2
+suv
+
+# -- objects (10) --
+mug
+tumbler
+umbrella
+sunblock
+pencilcase
+juice
+cola_can
+cracker_box
+tissue
+disposable_cup
+
+# -- people, by pose (9) --
+person_walking
+person_walking_away
+person_reaching
+person_prone
+person_reclining
+person_crouching
+person_sitting
+person_lying_down
+person_bending
