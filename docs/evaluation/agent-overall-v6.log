@@ -1,0 +1,376 @@
+==========================================
+  MARC 2026 SDK Demo Participant
+  team_id:        dongdong
+  ROS_DISTRO:     humble
+  ROS_DOMAIN_ID:  11
+  python:         python3
+==========================================
+[16:34:39] participant_app INFO: [vla] MARC_VLA=real -- nlu + detection + geometry
+[INFO] [1788161727.045044526] [marc_participant]: [SUB] robot/gripper/holding
+[INFO] [1788161727.045839632] [marc_participant]: [SUB] robot/basket/occupied
+[16:35:27] participant_app INFO: [Score] round 26: total=99.716407582167
+[16:35:27] participant_app INFO: [Score] round 27: total=47.864190431093895
+[16:35:27] participant_app INFO: [Score] round 28: total=47.908175652333604
+[INFO] [1788161727.048340076] [marc_participant]: [REGISTER] starting handshake to /marc/ops/register
+[16:35:27] participant_app INFO: [Score] round 29: total=99.0671836375034
+[16:35:27] participant_app INFO: [Score] round 30: total=98.96239894226917
+[16:35:27] participant_app INFO: [Score] round 31: total=99.37816910619559
+[16:35:27] participant_app INFO: [Score] round 32: total=90.5923987200333
+[16:35:27] participant_app INFO: [Score] round 33: total=99.06681300665832
+[16:35:27] participant_app INFO: [Stage2] reveal received -- score=25.0, type=tumbler, center=[-44.37683, 121.1243, 16.67988], r=2.0
+[16:35:27] participant_app INFO: [FINAL] {'stage1_average': 83.411, 'stage1_rounds': 33, 'stage1_round_scores': [99.2661, 35.0, 59.5338, 99.2646, 99.1701, 35.0, 57.8878, 99.4077, 99.4069, 97.8094, 57.8085, 99.1693, 25.0, 99.2669, 89.2669, 99.1681, 35.0, 99.4039, 99.4039, 99.3746, 98.9603, 90.5928, 97.3599, 99.4193, 99.0656, 99.7164, 47.8642, 47.9082, 99.0672, 98.9624, 99.3782, 90.5924, 99.0668], 'stage2': 5.0, 'max_total': 200.0, 'total': 88.411}
+[INFO] [1788161727.106082234] [marc_participant]: [ACK] registration succeeded (team_id=dongdong, session issued)
+[INFO] [1788161727.106272243] [marc_participant]: [STATE] READY -> STAGE1_RUN
+[16:35:27] participant_app INFO: [STATE] READY -> STAGE1_RUN
+[16:35:27] participant_app INFO: [Stage1] round 1/33 (limit 30s): "Find the mug on the picnic table."
+[INFO] [1788161727.337360941] [marc_participant]: [SUB] CCTV rig_1_a
+[INFO] [1788161727.338556519] [marc_participant]: [SUB] CCTV rig_2_b
+[INFO] [1788161727.339847489] [marc_participant]: [SUB] CCTV rig_2_c
+[INFO] [1788161727.341109019] [marc_participant]: [SUB] CCTV rig_3_b
+[INFO] [1788161727.342223644] [marc_participant]: [SUB] CCTV rig_3_c
+[INFO] [1788161727.343574654] [marc_participant]: [SUB] CCTV rig_7_a
+[16:35:33] participant_app INFO: [Stage1] CCTV warm-up: 6 camera(s) ready ['rig_1_a', 'rig_2_b', 'rig_2_c', 'rig_3_b', 'rig_3_c', 'rig_7_a']
+[16:35:34] participant_app INFO: [real-vla] parsed 'Find the mug on the picnic table.' -> {'target_type': 'mug', 'landmark': 'picnic_table', 'relation': 'on', 'situation': None, 'region': None, 'context_landmarks': ['picnic_table']}
+[16:35:35] participant_app INFO: [detect] YOLO ready (detection/weights/chungmu_yolo11s_1280_best.pt, threshold 0.25, imgsz 1280)
+[16:35:35] participant_app INFO: [detect] YOLO ready (detection/weights/chungmu_roi_10cls_yolo11s_1280_best.pt, threshold 0.25, imgsz 1280)
+[16:35:35] participant_app INFO: [geom] tf_static: 6 frames known
+[16:35:38] participant_app INFO: [detect] mug on rig_1_a (score 3.13, conf 0.65) landmark=picnic_table target=[-58.61, 120.21, 17.45]
+[INFO] [1788161738.035904303] [marc_participant]: [SUBMIT] grounding (msg 301, seq=1)
+[INFO] [1788161738.101196585] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:35:38] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:35:38] participant_app INFO: [Score] round 1: total=99.26473774254426
+[INFO] [1788161740.161006516] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:35:40] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:35:40] participant_app INFO: [Stage1] round 2/33 (limit 30s): "Find the tumbler on the bench."
+[16:35:41] participant_app INFO: [real-vla] parsed 'Find the tumbler on the bench.' -> {'target_type': 'tumbler', 'landmark': 'bench', 'relation': 'on', 'situation': None, 'region': None, 'context_landmarks': ['bench']}
+[16:35:42] participant_app INFO: [detect] target coordinate missing -- retrying latest CCTV frames (1/1)
+[16:35:43] participant_app INFO: [detect] tumbler on rig_2_b (score 2.49, conf fallback) landmark=bench target=[-69.15, 129.5, 16.4]
+[INFO] [1788161743.364374138] [marc_participant]: [SUBMIT] grounding (msg 301, seq=2)
+[16:35:43] participant_app INFO: [Score] round 2: total=35.0
+[INFO] [1788161743.453863835] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:35:43] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161745.506799628] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:35:45] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:35:45] participant_app INFO: [Stage1] round 3/33 (limit 30s): "Find the tumbler near the fire hydrant in the parking lot."
+[16:35:47] participant_app INFO: [real-vla] parsed 'Find the tumbler near the fire hydrant in the parking lot.' -> {'target_type': 'tumbler', 'landmark': 'hydrant', 'relation': 'near', 'situation': None, 'region': 'parking_lot', 'context_landmarks': ['hydrant']}
+[16:35:47] participant_app INFO: [detect] tumbler on rig_7_a (score 3.27, conf 0.79) landmark=hydrant target=[-37.9, 129.42, 16.8]
+[INFO] [1788161747.812045298] [marc_participant]: [SUBMIT] grounding (msg 301, seq=3)
+[16:35:47] participant_app INFO: [Score] round 3: total=59.53342918947705
+[INFO] [1788161747.834144290] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:35:47] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161749.892687550] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:35:49] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:35:49] participant_app INFO: [Stage1] round 4/33 (limit 30s): "Find the sunblock beside the picnic table."
+[16:35:51] participant_app INFO: [real-vla] parsed 'Find the sunblock beside the picnic table.' -> {'target_type': 'sunblock', 'landmark': 'picnic_table', 'relation': 'beside', 'situation': None, 'region': None, 'context_landmarks': ['picnic_table']}
+[16:35:52] participant_app INFO: [detect] sunblock on rig_1_a (score 3.21, conf 0.73) landmark=picnic_table target=[-57.9, 121.31, 16.6]
+[INFO] [1788161752.143000312] [marc_participant]: [SUBMIT] grounding (msg 301, seq=4)
+[16:35:52] participant_app INFO: [Score] round 4: total=99.26687139364407
+[INFO] [1788161752.244514418] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:35:52] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161754.300873608] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:35:54] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:35:54] participant_app INFO: [Stage1] round 5/33 (limit 30s): "Find the umbrella beside the vending machine."
+[16:35:56] participant_app INFO: [real-vla] parsed 'Find the umbrella beside the vending machine.' -> {'target_type': 'umbrella', 'landmark': 'vending_machine', 'relation': 'beside', 'situation': None, 'region': None, 'context_landmarks': ['vending_machine']}
+[16:35:56] participant_app INFO: [detect] umbrella on rig_2_c (score 3.34, conf 0.85) landmark=vending_machine target=[-61.34, 136.21, 16.4]
+[INFO] [1788161756.405117062] [marc_participant]: [SUBMIT] grounding (msg 301, seq=5)
+[16:35:56] participant_app INFO: [Score] round 5: total=99.16890399348077
+[INFO] [1788161756.440053905] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:35:56] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161758.503570547] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:35:58] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:35:58] participant_app INFO: [Stage1] round 6/33 (limit 30s): "Find the umbrella next to the trash can."
+[16:36:00] participant_app INFO: [real-vla] parsed 'Find the umbrella next to the trash can.' -> {'target_type': 'umbrella', 'landmark': 'trash_can', 'relation': 'near', 'situation': None, 'region': None, 'context_landmarks': ['trash_can']}
+[16:36:00] participant_app INFO: [detect] umbrella on rig_2_c (score 3.33, conf 0.86) landmark=trash_can target=[-61.34, 136.21, 16.4]
+[INFO] [1788161760.990227521] [marc_participant]: [SUBMIT] grounding (msg 301, seq=6)
+[16:36:01] participant_app INFO: [Score] round 6: total=35.0
+[INFO] [1788161761.070862130] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:01] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161763.142358406] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:03] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:03] participant_app INFO: [Stage1] round 7/33 (limit 30s): "Find the pencil case near the picnic table."
+[16:36:04] participant_app INFO: [real-vla] parsed 'Find the pencil case near the picnic table.' -> {'target_type': 'pencilcase', 'landmark': 'picnic_table', 'relation': 'near', 'situation': None, 'region': None, 'context_landmarks': ['picnic_table']}
+[16:36:05] participant_app INFO: [detect] pencilcase on rig_3_b (score 3.33, conf 0.87) landmark=picnic_table target=[-77.93, 97.24, 16.1]
+[INFO] [1788161765.321557998] [marc_participant]: [SUBMIT] grounding (msg 301, seq=7)
+[16:36:05] participant_app INFO: [Score] round 7: total=57.88806529859437
+[INFO] [1788161765.419255544] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:05] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161767.479515192] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:07] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:07] participant_app INFO: [Stage1] round 8/33 (limit 30s): "Find the umbrella dropped in the empty parking space."
+[16:36:09] participant_app INFO: [real-vla] parsed 'Find the umbrella dropped in the empty parking space.' -> {'target_type': 'umbrella', 'landmark': 'police_car', 'relation': 'near', 'situation': None, 'region': 'parking_lot', 'context_landmarks': []}
+[16:36:09] participant_app INFO: [detect] umbrella on rig_7_a (score 3.01, conf 0.56) landmark=police_car target=[-42.56, 120.7, 16.8]
+[INFO] [1788161769.522459396] [marc_participant]: [SUBMIT] grounding (msg 301, seq=8)
+[INFO] [1788161769.536594685] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:09] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:09] participant_app INFO: [Score] round 8: total=99.3746984501377
+[INFO] [1788161771.597355825] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:11] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:11] participant_app INFO: [Stage1] round 9/33 (limit 30s): "Find the tumbler dropped in the empty parking space."
+[16:36:13] participant_app INFO: [real-vla] parsed 'Find the tumbler dropped in the empty parking space.' -> {'target_type': 'tumbler', 'landmark': 'police_car', 'relation': 'near', 'situation': None, 'region': 'parking_lot', 'context_landmarks': []}
+[16:36:13] participant_app INFO: [detect] tumbler on rig_7_a (score 3.19, conf 0.73) landmark=police_car target=[-43.91, 121.7, 16.8]
+[INFO] [1788161773.725947360] [marc_participant]: [SUBMIT] grounding (msg 301, seq=9)
+[16:36:13] participant_app INFO: [Score] round 9: total=99.37975164605712
+[INFO] [1788161773.741426271] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:13] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161775.798318044] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:15] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:15] participant_app INFO: [Stage1] round 10/33 (limit 30s): "Find the tumbler on the road next to the taxi."
+[16:36:17] participant_app INFO: [real-vla] parsed 'Find the tumbler on the road next to the taxi.' -> {'target_type': 'tumbler', 'landmark': 'taxi', 'relation': 'near', 'situation': None, 'region': 'road', 'context_landmarks': ['taxi']}
+[16:36:17] participant_app INFO: [detect] tumbler on rig_3_c (score 3.30, conf 0.83) landmark=taxi target=[-85.71, 106.63, 16.1]
+[INFO] [1788161777.930291602] [marc_participant]: [SUBMIT] grounding (msg 301, seq=10)
+[INFO] [1788161777.949254931] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:17] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:17] participant_app INFO: [Score] round 10: total=97.8091982666925
+[INFO] [1788161780.009485866] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:20] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:20] participant_app INFO: [Stage1] round 11/33 (limit 30s): "Find the umbrella on the road next to the taxi."
+[16:36:21] participant_app INFO: [real-vla] parsed 'Find the umbrella on the road next to the taxi.' -> {'target_type': 'umbrella', 'landmark': 'taxi', 'relation': 'near', 'situation': None, 'region': 'road', 'context_landmarks': ['taxi']}
+[16:36:22] participant_app INFO: [detect] umbrella on rig_3_c (score 3.22, conf 0.75) landmark=taxi target=[-85.49, 106.9, 16.1]
+[INFO] [1788161782.043138149] [marc_participant]: [SUBMIT] grounding (msg 301, seq=11)
+[16:36:22] participant_app INFO: [Score] round 11: total=57.809918324541165
+[INFO] [1788161782.071810862] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:22] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161784.137668230] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:24] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:24] participant_app INFO: [Stage1] round 12/33 (limit 30s): "After working out I grabbed a drink from the machine and left my umbrella standing next to it."
+[16:36:26] participant_app INFO: [real-vla] parsed 'After working out I grabbed a drink from the machine and left my umbrella standing next to it.' -> {'target_type': 'umbrella', 'landmark': 'vending_machine', 'relation': 'beside', 'situation': None, 'region': None, 'context_landmarks': []}
+[16:36:26] participant_app INFO: [detect] umbrella on rig_2_c (score 3.33, conf 0.85) landmark=vending_machine target=[-61.34, 136.21, 16.4]
+[INFO] [1788161786.409069133] [marc_participant]: [SUBMIT] grounding (msg 301, seq=12)
+[16:36:26] participant_app INFO: [Score] round 12: total=99.16791438482366
+[INFO] [1788161786.569612576] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:26] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161788.649743904] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:28] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:28] participant_app INFO: [Stage1] round 13/33 (limit 30s): "I was taking notes at an outdoor table and left my pencil case behind."
+[16:36:30] participant_app INFO: [real-vla] parsed 'I was taking notes at an outdoor table and left my pencil case behind.' -> {'target_type': 'pencilcase', 'landmark': 'picnic_table', 'relation': 'on', 'situation': None, 'region': None, 'context_landmarks': []}
+[16:36:30] participant_app INFO: [detect] target coordinate missing -- retrying latest CCTV frames (1/1)
+[16:36:31] participant_app INFO: [detect] pencilcase on rig_1_a (score 2.48, conf fallback) landmark=picnic_table target=[-58.93, 119.89, 16.6]
+[INFO] [1788161791.303045986] [marc_participant]: [SUBMIT] grounding (msg 301, seq=13)
+[16:36:31] participant_app INFO: [Score] round 13: total=25.0
+[INFO] [1788161791.352145049] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:31] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161793.365614171] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:33] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:33] participant_app INFO: [Stage1] round 14/33 (limit 30s): "I was reading with a coffee at an outdoor table and left my mug there."
+[16:36:35] participant_app INFO: [real-vla] parsed 'I was reading with a coffee at an outdoor table and left my mug there.' -> {'target_type': 'mug', 'landmark': 'picnic_table', 'relation': 'on', 'situation': None, 'region': None, 'context_landmarks': []}
+[16:36:35] participant_app INFO: [detect] mug on rig_1_a (score 3.15, conf 0.67) landmark=picnic_table target=[-58.61, 120.21, 17.45]
+[INFO] [1788161795.604325423] [marc_participant]: [SUBMIT] grounding (msg 301, seq=14)
+[16:36:35] participant_app INFO: [Score] round 14: total=99.26651966311772
+[INFO] [1788161795.698645301] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:35] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161797.742519929] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:37] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:37] participant_app INFO: [Stage1] round 15/33 (limit 30s): "I was resting in the sun at the park and left the sunblock I had been using."
+[16:36:39] participant_app INFO: [real-vla] parsed 'I was resting in the sun at the park and left the sunblock I had been using.' -> {'target_type': 'sunblock', 'landmark': 'park', 'relation': 'on', 'situation': None, 'region': 'park', 'context_landmarks': []}
+[16:36:39] participant_app INFO: [detect] semantic area park is not a visual landmark; searching for a concrete nearby anchor
+[16:36:41] participant_app INFO: [detect] sunblock on rig_1_a (score 2.26, conf 0.78) landmark=picnic_table target=[-57.9, 121.31, 16.6]
+[16:36:41] participant_app WARNING: [detect] relation mismatch: text=on geometry=beside
+[INFO] [1788161801.324657329] [marc_participant]: [SUBMIT] grounding (msg 301, seq=15)
+[INFO] [1788161801.363230286] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:41] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:41] participant_app INFO: [Score] round 15: total=89.266552995538
+[INFO] [1788161803.385968372] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:43] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:43] participant_app INFO: [Stage1] round 16/33 (limit 30s): "After grabbing a drink from the vending machine I left my umbrella propped against its side."
+[16:36:45] participant_app INFO: [real-vla] parsed 'After grabbing a drink from the vending machine I left my umbrella propped against its side.' -> {'target_type': 'umbrella', 'landmark': 'vending_machine', 'relation': 'beside', 'situation': None, 'region': None, 'context_landmarks': ['vending_machine']}
+[16:36:45] participant_app INFO: [detect] umbrella on rig_2_c (score 3.34, conf 0.85) landmark=vending_machine target=[-61.34, 136.21, 16.4]
+[INFO] [1788161805.671187862] [marc_participant]: [SUBMIT] grounding (msg 301, seq=16)
+[16:36:45] participant_app INFO: [Score] round 16: total=99.17002089901631
+[INFO] [1788161805.719807250] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:45] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161807.794235300] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:47] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:47] participant_app INFO: [Stage1] round 17/33 (limit 30s): "I stopped to throw something in the bin and left my umbrella leaning against the trash can."
+[16:36:49] participant_app INFO: [real-vla] parsed 'I stopped to throw something in the bin and left my umbrella leaning against the trash can.' -> {'target_type': 'umbrella', 'landmark': 'trash_can', 'relation': 'near', 'situation': None, 'region': None, 'context_landmarks': ['trash_can']}
+[16:36:50] participant_app INFO: [detect] umbrella on rig_2_c (score 3.33, conf 0.86) landmark=trash_can target=[-61.34, 136.21, 16.4]
+[INFO] [1788161810.502201751] [marc_participant]: [SUBMIT] grounding (msg 301, seq=17)
+[16:36:50] participant_app INFO: [Score] round 17: total=35.0
+[INFO] [1788161810.595469074] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:50] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161812.681462305] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:52] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:52] participant_app INFO: [Stage1] round 18/33 (limit 30s): "I think I dropped my tumbler on the ground as I got out of my car in the parking lot."
+[16:36:54] participant_app INFO: [real-vla] parsed 'I think I dropped my tumbler on the ground as I got out of my car in the parking lot.' -> {'target_type': 'tumbler', 'landmark': 'police_car', 'relation': 'near', 'situation': None, 'region': 'parking_lot', 'context_landmarks': []}
+[16:36:54] participant_app INFO: [detect] tumbler on rig_7_a (score 3.25, conf 0.80) landmark=police_car target=[-43.92, 121.7, 16.8]
+[INFO] [1788161814.974736877] [marc_participant]: [SUBMIT] grounding (msg 301, seq=18)
+[INFO] [1788161814.985039143] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:54] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:54] participant_app INFO: [Score] round 18: total=99.39768246531683
+[INFO] [1788161817.058251504] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:57] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:36:57] participant_app INFO: [Stage1] round 19/33 (limit 30s): "Getting out of my car I dropped my umbrella in the empty space next to it; find it in the parking lot."
+[16:36:58] participant_app INFO: [real-vla] parsed 'Getting out of my car I dropped my umbrella in the empty space next to it; find it in the parking lot.' -> {'target_type': 'umbrella', 'landmark': 'police_car', 'relation': 'near', 'situation': None, 'region': 'parking_lot', 'context_landmarks': []}
+[16:36:59] participant_app INFO: [detect] umbrella on rig_7_a (score 3.01, conf 0.56) landmark=police_car target=[-42.55, 120.72, 16.8]
+[INFO] [1788161819.336593289] [marc_participant]: [SUBMIT] grounding (msg 301, seq=19)
+[16:36:59] participant_app INFO: [Score] round 19: total=99.39649934444307
+[INFO] [1788161819.365786667] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:36:59] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161821.446065448] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:01] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:01] participant_app INFO: [Stage1] round 20/33 (limit 30s): "Find the person sitting on top of the trash can in the parking lot."
+[16:37:03] participant_app INFO: [real-vla] parsed 'Find the person sitting on top of the trash can in the parking lot.' -> {'target_type': 'person_sitting', 'landmark': 'trash_can', 'relation': 'on', 'situation': 'abnormal', 'region': 'parking_lot', 'context_landmarks': ['trash_can']}
+[16:37:03] participant_app INFO: [detect] person-on-support coordinate aligned to trash_can anchor XY
+[16:37:03] participant_app INFO: [detect] person_sitting on rig_7_a (score 5.56, conf 0.78) landmark=trash_can target=[-38.28, 134.58, 17.05]
+[INFO] [1788161823.639077725] [marc_participant]: [SUBMIT] grounding (msg 301, seq=20)
+[16:37:03] participant_app INFO: [Score] round 20: total=99.37773969132411
+[INFO] [1788161823.666273870] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:03] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161825.745280465] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:05] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:05] participant_app INFO: [Stage1] round 21/33 (limit 30s): "Find the person sitting on top of the vending machine."
+[16:37:07] participant_app INFO: [real-vla] parsed 'Find the person sitting on top of the vending machine.' -> {'target_type': 'person_sitting', 'landmark': 'vending_machine', 'relation': 'on', 'situation': 'abnormal', 'region': None, 'context_landmarks': ['vending_machine']}
+[16:37:07] participant_app INFO: [detect] person-on-support coordinate aligned to vending_machine anchor XY
+[16:37:07] participant_app INFO: [detect] person_sitting on rig_2_c (score 3.70, conf 0.52) landmark=vending_machine target=[-62.91, 135.37, 17.94]
+[INFO] [1788161827.804690662] [marc_participant]: [SUBMIT] grounding (msg 301, seq=21)
+[16:37:07] participant_app INFO: [Score] round 21: total=98.96164131198745
+[INFO] [1788161827.867803486] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:07] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161829.944886037] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:09] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:09] participant_app INFO: [Stage1] round 22/33 (limit 30s): "Find the person lying face-down on the bench near the taxi."
+[16:37:11] participant_app INFO: [real-vla] parsed 'Find the person lying face-down on the bench near the taxi.' -> {'target_type': 'person_prone', 'landmark': 'bench', 'relation': 'near', 'situation': 'abnormal', 'region': None, 'context_landmarks': ['bench', 'taxi']}
+[16:37:11] participant_app INFO: [detect] person_prone coordinate refined via prone bbox point
+[16:37:11] participant_app INFO: [detect] person_prone on rig_2_b (score 3.54, conf 0.97) landmark=bench target=[-70.48, 125.77, 16.4]
+[INFO] [1788161831.981700794] [marc_participant]: [SUBMIT] grounding (msg 301, seq=22)
+[16:37:12] participant_app INFO: [Score] round 22: total=18.749999999999996
+[INFO] [1788161832.066166234] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:12] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161834.143330723] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:14] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:14] participant_app INFO: [Stage1] round 23/33 (limit 30s): "Find the person lying on top of the picnic table."
+[16:37:15] participant_app INFO: [real-vla] parsed 'Find the person lying on top of the picnic table.' -> {'target_type': 'person_lying_down', 'landmark': 'picnic_table', 'relation': 'on', 'situation': 'abnormal', 'region': None, 'context_landmarks': ['picnic_table']}
+[16:37:16] participant_app INFO: [detect] person-on-support coordinate aligned to picnic_table anchor XY
+[16:37:16] participant_app INFO: [detect] person_lying_down on rig_3_b (score 5.28, conf 0.83) landmark=picnic_table target=[-80.19, 97.16, 16.95]
+[INFO] [1788161836.268083783] [marc_participant]: [SUBMIT] grounding (msg 301, seq=23)
+[16:37:16] participant_app INFO: [Score] round 23: total=97.35993085453146
+[INFO] [1788161836.361216967] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:16] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161838.436258300] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:18] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:18] participant_app INFO: [Stage1] round 24/33 (limit 30s): "Find the person collapsed on the parking lot floor."
+[16:37:20] participant_app INFO: [real-vla] parsed 'Find the person collapsed on the parking lot floor.' -> {'target_type': 'person_lying_down', 'landmark': 'parking_lot_floor', 'relation': 'on', 'situation': 'emergency', 'region': 'parking_lot', 'context_landmarks': []}
+[16:37:20] participant_app INFO: [detect] semantic area parking_lot_floor is not a visual landmark; searching for a concrete nearby anchor
+[16:37:20] participant_app INFO: [detect] person pose refiner ready (detection/weights/yolo11n-pose.pt)
+[16:37:21] participant_app INFO: [detect] person_lying_down pose coordinate refined via foot_out_50
+[16:37:21] participant_app INFO: [detect] person_lying_down on rig_7_a (score 4.28, conf 0.95) landmark=hydrant target=[-35.59, 129.46, 16.8]
+[16:37:21] participant_app WARNING: [detect] relation mismatch: text=on geometry=near
+[INFO] [1788161841.063325414] [marc_participant]: [SUBMIT] grounding (msg 301, seq=24)
+[16:37:21] participant_app INFO: [Score] round 24: total=99.41979412327214
+[INFO] [1788161841.128431111] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:21] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161843.201955911] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:23] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:23] participant_app INFO: [Stage1] round 25/33 (limit 30s): "Find the person lying face-down and motionless in the parking lot."
+[16:37:24] participant_app INFO: [real-vla] parsed 'Find the person lying face-down and motionless in the parking lot.' -> {'target_type': 'person_prone', 'landmark': 'parking_lot', 'relation': None, 'situation': 'accident', 'region': 'parking_lot', 'context_landmarks': []}
+[16:37:24] participant_app INFO: [detect] semantic area parking_lot is not a visual landmark; searching for a concrete nearby anchor
+[16:37:25] participant_app INFO: [detect] person_prone coordinate refined via prone bbox point
+[16:37:25] participant_app INFO: [detect] person_prone on rig_7_a (score 4.38, conf 0.98) landmark=bicycle target=[-47.92, 127.02, 16.8]
+[INFO] [1788161845.406830786] [marc_participant]: [SUBMIT] grounding (msg 301, seq=25)
+[INFO] [1788161845.410690840] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:25] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:25] participant_app INFO: [Score] round 25: total=99.07225863067293
+[INFO] [1788161847.485404889] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:27] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:27] participant_app INFO: [Stage1] round 26/33 (limit 30s): "Find the person fallen on the ground next to the toppled bicycle."
+[16:37:29] participant_app INFO: [real-vla] parsed 'Find the person fallen on the ground next to the toppled bicycle.' -> {'target_type': 'person_bending', 'landmark': 'bicycle', 'relation': 'near', 'situation': 'emergency', 'region': None, 'context_landmarks': ['bicycle']}
+[16:37:29] participant_app INFO: [detect] person_bending pose coordinate refined via ankle
+[16:37:29] participant_app INFO: [detect] person_bending on rig_3_b (score 3.83, conf 0.95) landmark=bicycle target=[-77.61, 101.8, 16.1]
+[16:37:29] participant_app WARNING: [detect] relation mismatch: text=near geometry=beside
+[INFO] [1788161849.679145835] [marc_participant]: [SUBMIT] grounding (msg 301, seq=26)
+[16:37:29] participant_app INFO: [Score] round 26: total=99.71591423544443
+[INFO] [1788161849.711461901] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:29] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161851.792027569] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:31] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:31] participant_app INFO: [Stage1] round 27/33 (limit 30s): "Find the person bent over and motionless near the trash can in the park rest area."
+[16:37:33] participant_app INFO: [real-vla] parsed 'Find the person bent over and motionless near the trash can in the park rest area.' -> {'target_type': 'person_bending', 'landmark': 'trash_can', 'relation': 'near', 'situation': 'emergency', 'region': 'park', 'context_landmarks': ['trash_can']}
+[16:37:34] participant_app INFO: [detect] person_bending pose coordinate refined via ankle_trash_world_offset
+[16:37:34] participant_app INFO: [detect] person_bending on rig_1_a (score 4.33, conf 0.95) landmark=trash_can target=[-55.26, 111.4, 16.77]
+[16:37:34] participant_app WARNING: [detect] relation mismatch: text=near geometry=beside
+[INFO] [1788161854.101706770] [marc_participant]: [SUBMIT] grounding (msg 301, seq=27)
+[INFO] [1788161854.110804924] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:34] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:34] participant_app INFO: [Score] round 27: total=97.89816313355759
+[INFO] [1788161856.187706124] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:36] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:36] participant_app INFO: [Stage1] round 28/33 (limit 30s): "People are relaxing at the park and one is even lying on the grass; find the one near the trash can who is bent over and not moving and actually needs help."
+[16:37:38] participant_app INFO: [real-vla] parsed 'People are relaxing at the park and one is even lying on the grass; find the one near the trash can who is bent over and not moving and actually needs help.' -> {'target_type': 'person_bending', 'landmark': 'trash_can', 'relation': 'near', 'situation': 'emergency', 'region': 'park', 'context_landmarks': ['trash_can']}
+[16:37:38] participant_app INFO: [detect] person_bending pose coordinate refined via ankle_trash_world_offset
+[16:37:38] participant_app INFO: [detect] person_bending on rig_1_a (score 4.33, conf 0.95) landmark=trash_can target=[-55.25, 111.35, 16.77]
+[16:37:38] participant_app WARNING: [detect] relation mismatch: text=near geometry=beside
+[INFO] [1788161858.641465507] [marc_participant]: [SUBMIT] grounding (msg 301, seq=28)
+[16:37:38] participant_app INFO: [Score] round 28: total=97.9017928755158
+[INFO] [1788161858.680281288] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:38] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161860.755565892] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:40] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:40] participant_app INFO: [Stage1] round 29/33 (limit 30s): "In the parking lot a person is down next to a bicycle and looks like they had an accident; find them."
+[16:37:42] participant_app INFO: [real-vla] parsed 'In the parking lot a person is down next to a bicycle and looks like they had an accident; find them.' -> {'target_type': 'person_prone', 'landmark': 'bicycle', 'relation': 'near', 'situation': 'accident', 'region': 'parking_lot', 'context_landmarks': ['bicycle']}
+[16:37:43] participant_app INFO: [detect] person_prone coordinate refined via prone bbox point
+[16:37:43] participant_app INFO: [detect] person_prone on rig_7_a (score 4.38, conf 0.98) landmark=bicycle target=[-47.92, 127.02, 16.8]
+[16:37:43] participant_app WARNING: [detect] relation mismatch: text=near geometry=beside
+[INFO] [1788161863.121490677] [marc_participant]: [SUBMIT] grounding (msg 301, seq=29)
+[16:37:43] participant_app INFO: [Score] round 29: total=99.07001803998
+[INFO] [1788161863.148284377] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:43] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161865.215937202] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:45] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:45] participant_app INFO: [Stage1] round 30/33 (limit 30s): "Someone is up where people should not be; find the person who climbed on top of the drink machine."
+[16:37:47] participant_app INFO: [real-vla] parsed 'Someone is up where people should not be; find the person who climbed on top of the drink machine.' -> {'target_type': 'person_sitting', 'landmark': 'vending_machine', 'relation': 'on', 'situation': 'abnormal', 'region': None, 'context_landmarks': ['vending_machine']}
+[16:37:47] participant_app INFO: [detect] person-on-support coordinate aligned to vending_machine anchor XY
+[16:37:47] participant_app INFO: [detect] person_sitting on rig_2_c (score 3.66, conf 0.49) landmark=vending_machine target=[-62.91, 135.37, 17.94]
+[INFO] [1788161867.409350128] [marc_participant]: [SUBMIT] grounding (msg 301, seq=30)
+[16:37:47] participant_app INFO: [Score] round 30: total=98.96103314605521
+[INFO] [1788161867.428532779] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:47] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161869.498723596] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:49] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:49] participant_app INFO: [Stage1] round 31/33 (limit 30s): "In the parking lot, find the person who climbed up and is sitting on top of the trash can."
+[16:37:51] participant_app INFO: [real-vla] parsed 'In the parking lot, find the person who climbed up and is sitting on top of the trash can.' -> {'target_type': 'person_sitting', 'landmark': 'trash_can', 'relation': 'on', 'situation': 'abnormal', 'region': 'parking_lot', 'context_landmarks': ['trash_can']}
+[16:37:51] participant_app INFO: [detect] person-on-support coordinate aligned to trash_can anchor XY
+[16:37:51] participant_app INFO: [detect] person_sitting on rig_7_a (score 5.60, conf 0.81) landmark=trash_can target=[-38.28, 134.58, 17.05]
+[INFO] [1788161871.807057320] [marc_participant]: [SUBMIT] grounding (msg 301, seq=31)
+[16:37:51] participant_app INFO: [Score] round 31: total=99.38012704121651
+[INFO] [1788161871.896260993] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:51] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[INFO] [1788161873.974676009] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:53] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:53] participant_app INFO: [Stage1] round 32/33 (limit 30s): "Near the taxi, find the person lying down on top of the bench."
+[16:37:55] participant_app INFO: [real-vla] parsed 'Near the taxi, find the person lying down on top of the bench.' -> {'target_type': 'person_lying_down', 'landmark': 'bench', 'relation': 'on', 'situation': 'abnormal', 'region': None, 'context_landmarks': ['bench', 'taxi']}
+[16:37:56] participant_app INFO: [detect] person-on-support coordinate aligned to bench anchor XY
+[16:37:56] participant_app INFO: [detect] person_lying_down on rig_3_c (score 5.98, conf 0.82) landmark=bench target=[-84.35, 110.1, 16.47]
+[INFO] [1788161876.120469367] [marc_participant]: [SUBMIT] grounding (msg 301, seq=32)
+[INFO] [1788161876.188829920] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:56] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:37:56] participant_app INFO: [Score] round 32: total=90.62294420740882
+[INFO] [1788161878.268212341] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:58] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE1_RUN
+[16:37:58] participant_app INFO: [Stage1] round 33/33 (limit 30s): "Several people are in the parking lot; one is completely face-down and immobile; find the most critical one."
+[16:38:00] participant_app INFO: [real-vla] parsed 'Several people are in the parking lot; one is completely face-down and immobile; find the most critical one.' -> {'target_type': 'person_prone', 'landmark': None, 'relation': None, 'situation': 'accident', 'region': 'parking_lot', 'context_landmarks': []}
+[16:38:00] participant_app INFO: [detect] person_prone coordinate refined via prone bbox point
+[16:38:00] participant_app INFO: [detect] person_prone on rig_7_a (score 4.38, conf 0.98) landmark=bicycle target=[-47.91, 127.03, 16.8]
+[INFO] [1788161880.474071032] [marc_participant]: [SUBMIT] grounding (msg 301, seq=33)
+[INFO] [1788161880.487191394] [marc_participant]: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:38:00] participant_app INFO: [STATE] STAGE1_RUN -> STAGE1_SCORE
+[16:38:00] participant_app INFO: [Score] round 33: total=99.06611995750455
+[INFO] [1788161882.572236116] [marc_participant]: [STATE] STAGE1_SCORE -> STAGE2_RUN
+[16:38:02] participant_app INFO: [STATE] STAGE1_SCORE -> STAGE2_RUN
+[16:38:02] participant_app INFO: [Stage2] task: "Pick up the tumbler dropped on the parking lot floor and bring it to the owner." (limit 600s)
+[16:38:02] participant_app INFO: [Stage2] owner_position(runtime-provided)=(-54.56651, 142.79308)
+[16:38:04] participant_app INFO: [real-vla] parsed 'Pick up the tumbler dropped on the parking lot floor and bring it to the owner.' -> {'target_type': 'tumbler', 'landmark': 'parking_lot_floor', 'relation': 'on', 'situation': None, 'region': 'parking_lot', 'context_landmarks': []}
+[16:38:04] participant_app INFO: [detect] semantic area parking_lot_floor is not a visual landmark; searching for a concrete nearby anchor
+[16:38:06] participant_app INFO: [detect] tumbler on rig_7_a (score 2.38, conf 0.89) landmark=normal_car_1 target=[-37.9, 129.42, 16.8]
+[16:38:06] participant_app WARNING: [detect] relation mismatch: text=on geometry=near
+[INFO] [1788161886.472682055] [marc_participant]: [SUBMIT] stage2 grounding (msg 311, seq=34)
+[16:38:06] participant_app INFO: [Stage2] submitted grounding target=(-37.8986317616268, 129.42433185984052), delivery point=(-54.56651, 142.79308)
+[16:38:06] participant_app INFO: [Stage2] navigation start -- collect=(-44.37683, 121.1243) deliver=(-54.56651, 142.79308) (timeout 1800s)
+[16:38:06] participant_app INFO: [Stage2] arm stow -> HOME (lower CoG, tip-over prevention)
+[16:38:06] participant_app INFO: [Stage2] leg1A -> hint=(-44.38, 121.12) search standoff target=0.75m
+[16:38:06] participant_app INFO: [FINAL] {'stage1_average': 84.2642, 'stage1_rounds': 33, 'stage1_round_scores': [99.2647, 35.0, 59.5334, 99.2669, 99.1689, 35.0, 57.8881, 99.3747, 99.3798, 97.8092, 57.8099, 99.1679, 25.0, 99.2665, 89.2666, 99.17, 35.0, 99.3977, 99.3965, 99.3777, 98.9616, 18.75, 97.3599, 99.4198, 99.0723, 99.7159, 97.8982, 97.9018, 99.07, 98.961, 99.3801, 90.6229, 99.0661], 'stage2': 0.0, 'max_total': 200.0, 'total': 84.2642}
+[16:38:06] participant_app INFO: [MAP-MODE] target=(-44.38, 121.12) originalOcc=0 -> ORIGINAL
+[INFO] [1788161886.512248517] [marc_participant]: [STATE] STAGE2_RUN -> FINISHING
+[16:38:06] participant_app INFO: [STATE] STAGE2_RUN -> FINISHING
+[16:38:06] participant_app INFO: [Stage2] standoff init: target=(-44.38, 121.12) standoff=0.75m -> goal=(-45.13, 121.12)
+[16:38:06] participant_app INFO: [MAP-MODE] navigation finished with mode=ORIGINAL
+[INFO] [1788161886.515329219] [marc_participant]: [STATE] FINISHING -> FINISHED
+[16:38:06] participant_app INFO: [STATE] FINISHING -> FINISHED
