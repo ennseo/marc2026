@@ -32,7 +32,9 @@ log = logging.getLogger("participant_app")
 STAGE2_NAV_TIMEOUT_S = 1800.0
 STAGE2_NAV_RATE_HZ = 10.0
 STAGE2_NAV_DT = 1.0 / STAGE2_NAV_RATE_HZ
-STAGE2_INFLATION_M = 0.70                                                                        
+STAGE2_INFLATION_M = 0.70
+# CUSTOM2 최종 배송에서만 벽 안전거리를 줄이고 LiDAR 장애물 안전거리는 유지한다.
+CUSTOM2_FINAL_WALL_INFLATION_M = STAGE2_INFLATION_M * 0.5
 
                                                    
                                            
@@ -152,7 +154,7 @@ PICKUP_STANDOFF_M = 0.75
 TARGET_KEEP_OUT_RADIUS_M = 0.22
                                               
 TARGET_GOAL_CLEARANCE_FROM_ORANGE_M = 0.20
-GRASP_FINAL_FWD_M = 0.75
+GRASP_FINAL_FWD_M = 0.55
 
                                             
                                                                                                  
@@ -308,27 +310,33 @@ class DemoParticipant:
             log.info("[Stage2] owner_position(runtime-provided)=%s", self._pickup_xy)
                                                                                        
         result = self.vla.process_stage2(mission.task_description)
-        self.client.submit_stage2_grounding(result)
                                                                                          
         tc = result.target_coord
         if tc and len(tc) >= 2:
             self._stage2_target_xy = (float(tc[0]), float(tc[1]))
+        self.client.submit_stage2_grounding(result)
         log.info("[Stage2] submitted grounding target=%s, delivery point=%s",
                  self._stage2_target_xy, self._pickup_xy or DELIVERY_XY)
 
     def _on_stage2_reveal(self, reveal):
         """Stage 2 post-grounding reveal (msg 411) -- adopt the approximate location/type as the pick goal.
 
-        Regardless of grounding accuracy, use the revealed approximate location
-        (hint_center) as the goal of the pickup leg. There may be distractors within the
-        radius, so use the type (target_type) to decide which object to pick up (the demo
-        only demonstrates reaching the location).
+        Use the grounded target coordinate when it lies within the revealed hint radius;
+        otherwise fall back to the hint center for the pickup leg.
         """
         log.info("[Stage2] reveal received -- score=%s, type=%s, center=%s, r=%.1f",
                  reveal.grounding_score, reveal.target_type,
                  reveal.hint_center, reveal.hint_radius)
         if reveal.hint_center and len(reveal.hint_center) >= 2:
-            self._collect_xy = (float(reveal.hint_center[0]), float(reveal.hint_center[1]))
+            hint_xy = (float(reveal.hint_center[0]), float(reveal.hint_center[1]))
+            target_xy = self._stage2_target_xy
+            radius = float(reveal.hint_radius)
+            if target_xy is not None and math.hypot(
+                target_xy[0] - hint_xy[0], target_xy[1] - hint_xy[1]
+            ) <= radius:
+                self._collect_xy = target_xy
+            else:
+                self._collect_xy = hint_xy
 
     def _drive(self):
         """Called once in a separate thread on entering STAGE2_RUN -- pick up the object then deliver it.
@@ -436,7 +444,8 @@ class DemoParticipant:
 
                     if target is None:
                         log.info("[Stage2][ARM] no graspable object detected")
-                        break
+                        grasp_try += 1
+                        continue
 
                     gx, gy, grasp_yaw = target
                     log.info(
@@ -520,6 +529,7 @@ class DemoParticipant:
             pickup_xy,
             deadline,
             force_map_mode=delivery_force_map_mode,
+            final_delivery=True,
         )
 
         c.stop()
@@ -703,7 +713,7 @@ class DemoParticipant:
     def _navigate_to(self, goal, deadline, tol=GOAL_TOLERANCE,
                      inflation_m=STAGE2_INFLATION_M, exclude_m=0.0, cruise=False,
                      face_target=None, standoff_target=None, standoff_m=None,
-                     force_map_mode=None):
+                     force_map_mode=None, final_delivery=False):
         """Drive to a single goal (x, y) by following occupancy A*. True if reached, False on timeout.
 
         Args:
@@ -720,6 +730,7 @@ class DemoParticipant:
                 라이다로 새로 확정된 장애물이 하필 그 지점 근처에 쌓였을 때
                 goal 자체가 안전마진(침식)에 깎여도 못 알아채는 문제가 있었음.
             standoff_m: standoff_target과 함께 사용 -- 목표로부터의 거리(m).
+            final_delivery: CUSTOM2 최종 배송 구간에서 벽 안전거리를 완화한다.
         The deadline is a shared SIM-time budget across all Stage 2 legs.
         """
         c = self.client
@@ -1328,9 +1339,15 @@ class DemoParticipant:
                                                          
             if STAGE2_GRID_DEBUG_IMG and c.now_s() - self._grid_dbg_t >= 1.0:
                 self._grid_dbg_t = c.now_s()
+                wall_inflation_m = (
+                    CUSTOM2_FINAL_WALL_INFLATION_M
+                    if final_delivery and map_mode == "CUSTOM2"
+                    else inflation_m
+                )
                 planner.dump_debug_view(
                     (x, y), goal,
-                    inflation_m=inflation_m,
+                    inflation_m=wall_inflation_m,
+                    extra_inflation_m=inflation_m,
                     extra_cells=confirmed_cells.keys(),
                     path_world=path,
                     debug_dump_path=STAGE2_GRID_DEBUG_IMG,
@@ -1656,10 +1673,22 @@ class DemoParticipant:
 
                                                                                                                    
                                                                            
+                    wall_inflation_m = (
+                        CUSTOM2_FINAL_WALL_INFLATION_M
+                        if final_delivery and map_mode == "CUSTOM2"
+                        else inflation_m
+                    )
+                    if final_delivery and map_mode == "CUSTOM2":
+                        log.info(
+                            "[CUSTOM2-FINAL] wall inflation %.2fm -> %.2fm; LiDAR inflation stays %.2fm",
+                            inflation_m, wall_inflation_m, inflation_m,
+                        )
+
                     path = planner.plan(
                         (x, y),
                         goal,
-                        inflation_m=inflation_m,
+                        inflation_m=wall_inflation_m,
+                        extra_inflation_m=inflation_m,
                         snap_m=4.0,
                         extra_cells=confirmed_cells.keys(),
                         debug_dump_path=STAGE2_GRID_DEBUG_IMG,
@@ -1724,6 +1753,14 @@ class DemoParticipant:
                     break
 
                                      
+            goal_dist = math.hypot(goal[0] - x, goal[1] - y)
+            if not cruise and goal_dist < 1.5 and linear > 0.0:
+                speed_cap = 0.4 * goal_dist
+                if linear > speed_cap:
+                    scale = speed_cap / linear
+                    linear = speed_cap
+                    angular *= scale
+
             cmd_v, cmd_w = _slew_cmd(
                 cmd_v, cmd_w,
                 linear, angular,

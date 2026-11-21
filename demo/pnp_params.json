@@ -30,7 +30,7 @@
   "_grad_thresh": "Sobel gradient magnitude 임계값, 낮출수록 에지 민감",
   "min_area_px": 500,
   "_min_area_px": "이보다 작은 컨투어는 노이즈로 기각 [px²]",
-  "yaw_sign": 1.0,
+  "yaw_sign": -1.0,
   "_yaw_sign": "이미지 각도 → arm yaw 부호, tester에서 물체 돌려놓고 ±1 확정",
   "yaw_offset": 0.0,
   "_yaw_offset": "이미지 각도 → arm yaw 오프셋",

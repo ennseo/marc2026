@@ -19,7 +19,7 @@ CUSTOM_MAP_LINES = [
     [
         (-114.82775, 122.686),
         (-96.82238, 99.99744),
-        (-52.66355, 146.73214),
+        (-55.23883, 143.00533),
                
     ],
     [
@@ -50,7 +50,7 @@ CUSTOM_MAP2_LINES = [
     [
         (-114.82775, 122.686),
         (-96.82238, 99.99744),
-        (-52.66355, 146.73214),
+        (-55.23883, 143.00533),
            
     ],
     [
@@ -607,10 +607,11 @@ class OccupancyGridPlanner:
         self,
         start_xy,
         goal_xy,
-        inflation_m=0.64,  # 경로 중간은 기존 inflation 유지
+        inflation_m=0.64,  # occupancy map 벽 안전거리
         margin_m=12.0,
         snap_m=1.0,
         extra_cells=None,
+        extra_inflation_m=None,  # LiDAR 장애물 안전거리; 기본값은 inflation_m
         debug_dump_path=None,
         debug_target_xy=None,
         final_goal_yaw=None,
@@ -637,29 +638,32 @@ class OccupancyGridPlanner:
         cmax = min(self._w, max(sc, gc) + margin_c + 1)
 
         sub = self._grid[rmin:rmax, cmin:cmax]
-        trav = sub == 0
+        if extra_inflation_m is None:
+            extra_inflation_m = inflation_m
 
-        # 원인 구분용 마스크: 침식/라이다 반영 전, 원본 occupancy만 반영한 상태를 보존.
-        trav_before_extra = trav.copy()
-
-        # 일반 LiDAR 장애물은 기존처럼 inflation 대상.
+        map_free = sub == 0
+        trav_before_extra = map_free.copy()
+        lidar_free = np.ones_like(map_free, dtype=bool)
         if extra_cells:
-            self._block_cells(trav, extra_cells, rmin, cmin)
+            self._block_cells(lidar_free, extra_cells, rmin, cmin)
 
-        # OccupancyGrid와 무관한 순수 LiDAR 마스크.
-        # 원본 맵이 검정/unknown이어도 LiDAR가 본 셀은 디버그에서 주황색으로 표시.
-        lidar_blocked = self._extra_cells_mask(
-            trav.shape, extra_cells, rmin, cmin
-        )
+        lidar_blocked = ~lidar_free
+        extra_blocked = map_free & lidar_blocked
+        trav_before_erosion = map_free & lidar_free
 
-        extra_blocked = trav_before_extra & ~trav
-        trav_before_erosion = trav.copy()
+        map_infl_c = int(round(inflation_m / self._res))
+        map_trav = map_free.copy()
+        if map_infl_c > 0:
+            map_trav = self._erode(map_trav, map_infl_c)
 
-        infl_c = int(round(inflation_m / self._res))
-        if infl_c > 0:
-            trav = self._erode(trav, infl_c)
+        extra_infl_c = int(round(extra_inflation_m / self._res))
+        lidar_trav = lidar_free.copy()
+        if extra_infl_c > 0:
+            lidar_trav = self._erode(lidar_trav, extra_infl_c)
 
-        # 분홍은 일반 occupancy/LiDAR 장애물의 inflation만 표시.
+        trav = map_trav & lidar_trav
+
+        # 실제 장애물이 아닌 안전거리 때문에 막힌 셀만 표시.
         eroded_only = trav_before_erosion & ~trav
 
         # 물건 주변 keepout은 inflation 이후에 hard-block.
@@ -803,6 +807,7 @@ class OccupancyGridPlanner:
         inflation_m=0.64,
         margin_m=12.0,
         extra_cells=None,
+        extra_inflation_m=None,
         path_world=None,
         debug_dump_path=None,
         target_xy=None,
@@ -835,21 +840,30 @@ class OccupancyGridPlanner:
         cmax = min(self._w, max(sc, gc) + margin_c + 1)
 
         sub = self._grid[rmin:rmax, cmin:cmax]
-        trav = sub == 0
-        trav_before_extra = trav.copy()
+        if extra_inflation_m is None:
+            extra_inflation_m = inflation_m
 
+        map_free = sub == 0
+        trav_before_extra = map_free.copy()
+        lidar_free = np.ones_like(map_free, dtype=bool)
         if extra_cells:
-            self._block_cells(trav, extra_cells, rmin, cmin)
+            self._block_cells(lidar_free, extra_cells, rmin, cmin)
 
-        lidar_blocked = self._extra_cells_mask(
-            trav.shape, extra_cells, rmin, cmin
-        )
-        extra_blocked = trav_before_extra & ~trav
-        trav_before_erosion = trav.copy()
+        lidar_blocked = ~lidar_free
+        extra_blocked = map_free & lidar_blocked
+        trav_before_erosion = map_free & lidar_free
 
-        infl_c = int(round(inflation_m / self._res))
-        if infl_c > 0:
-            trav = self._erode(trav, infl_c)
+        map_infl_c = int(round(inflation_m / self._res))
+        map_trav = map_free.copy()
+        if map_infl_c > 0:
+            map_trav = self._erode(map_trav, map_infl_c)
+
+        extra_infl_c = int(round(extra_inflation_m / self._res))
+        lidar_trav = lidar_free.copy()
+        if extra_infl_c > 0:
+            lidar_trav = self._erode(lidar_trav, extra_infl_c)
+
+        trav = map_trav & lidar_trav
 
         eroded_only = trav_before_erosion & ~trav
 

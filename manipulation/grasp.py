@@ -63,6 +63,7 @@ class GraspGenerator:
         return (yaw + np.pi / 2)% np.pi
 
     def look_down(self, target_pos=None):
+        self._ascend()
         arm_q = self._wait_q()
         if target_pos is None:
             target_pos = self.kin.fk(arm_q)[:3, 3].copy()
@@ -118,9 +119,32 @@ class GraspGenerator:
         yaw = yaw + self.p["yaw_offset"]
         return float(p_base[0]), float(p_base[1]), float(yaw)
 
-
-        
-        
-
+    def _ascend(self, safe_z=None, timeout=3.0):
+        """현재 그리퍼 위치의 XY와 자세를 유지하며 안전 높이까지 올린다."""
+        rate, dt = 20.0, 0.05
+        pos_step = max(0.004, float(self.p.get("move_speed", 0.35)) * 0.017)
+        if safe_z is None:
+            safe_z = float(self.p.get("carry_up", 0.246)) + 0.10
+        q = self._wait_q()
+        T = self.kin.fk(q)
+        cur = T[:3, 3].copy()
+        if cur[2] >= safe_z - 0.02:
+            return
+        quat = arm_kin.R_to_quat(T[:3, :3])
+        tgt = np.array([cur[0], cur[1], safe_z])
+        tpos = cur.copy()
+        for _ in range(int(timeout * rate)):
+            aq = _read_arm_q(self.client)
+            if aq is None:
+                self.client.sleep(dt)
+                continue
+            d = tgt - tpos
+            dn = float(np.linalg.norm(d))
+            tpos = tgt if dn <= pos_step else tpos + d / dn * pos_step
+            cmd = arm_kin.dls_solve(self.kin, aq, tpos, quat)
+            self.client.send_arm_command(_make_js(cmd, GRIPPER_OPEN))
+            self.client.sleep(dt)
+            if float(np.linalg.norm(self.kin.fk(aq)[:3, 3] - tgt)) < 0.02:
+                break
 
 
