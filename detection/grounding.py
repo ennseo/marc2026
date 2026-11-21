@@ -685,11 +685,12 @@ class VisualGrounding:
                     log.info("[detect] %s pose coordinate refined via %s",
                              target_pose, refined["policy"])
         target_conf = result.get("target_conf")
-        log.info("[detect] %s on %s (score %.2f, conf %s) landmark=%s target=%s",
+        log.info("[detect] %s on %s (score %.2f, conf %s) landmark=%s target=%s anchor=%s",
                  target_pose or target_type, result["camera_id"], score,
                  f"{target_conf:.2f}" if target_conf is not None else "fallback",
                  result["landmark"] or "-",
-                 [round(v, 2) for v in result["target_coord"]] if result["target_coord"] else None)
+                 [round(v, 2) for v in result["target_coord"]] if result["target_coord"] else None,
+                 [round(v, 2) for v in result["anchor_coord"]] if result["anchor_coord"] else None)
 
         # Sanity signal, not an error: text and geometry disagreeing about the relation
         # usually means we locked onto the wrong instance.
